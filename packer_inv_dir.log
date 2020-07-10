@@ -1,0 +1,42 @@
+1594365697,,ui,say,==> amazon-ebs: Force Deregister flag found%!(PACKER_COMMA) skipping prevalidating AMI Name
+1594365698,,ui,message,    amazon-ebs: Found Image ID: ami-049f322a544cfcf88
+1594365698,,ui,message,    amazon-ebs: Found VPC ID: vpc-04fc0ec4d2605ef9b
+1594365699,,ui,message,    amazon-ebs: Found Subnet ID: subnet-0a2fceeaf5c40bd25
+1594365699,,ui,say,==> amazon-ebs: Creating temporary keypair: packer_5f081700-e8af-8542-fb98-9d2d4a592446
+1594365700,,ui,say,==> amazon-ebs: Creating temporary security group for this instance: packer_5f081704-264a-47ec-68c2-0fb0b59e27ce
+1594365701,,ui,say,==> amazon-ebs: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+1594365702,,ui,say,==> amazon-ebs: Launching a source AWS instance...
+1594365702,,ui,say,==> amazon-ebs: Adding tags to source instance
+1594365702,,ui,message,    amazon-ebs: Adding tag: "Name": "Packer Builder"
+1594365703,,ui,message,    amazon-ebs: Instance ID: i-031361da95b86a5b1
+1594365703,,ui,say,==> amazon-ebs: Waiting for instance (i-031361da95b86a5b1) to become ready...
+1594365725,,ui,say,==> amazon-ebs: Using ssh communicator to connect: 3.249.165.9
+1594365725,,ui,say,==> amazon-ebs: Waiting for SSH to become available...
+1594365743,,ui,say,==> amazon-ebs: Connected to SSH!
+1594365743,,ui,say,==> amazon-ebs: Provisioning with Ansible...
+1594365743,,ui,message,    amazon-ebs: Setting up proxy adapter for Ansible....
+1594365743,,ui,say,==> amazon-ebs: Executing Ansible: ansible-playbook -e packer_build_name=amazon-ebs -e packer_builder_type=amazon-ebs -e packer_http_addr=ERR_HTTP_ADDR_NOT_IMPLEMENTED_BY_BUILDER --ssh-extra-args '-o IdentitiesOnly=yes' --ssh-extra-args -o IdentitiesOnly=yes -e ansible_ssh_private_key_file=/var/folders/xf/vbqrc1g108b1n7t4j_g9r1_h0000gn/T/ansible-key827974872 -i hosts/hosts.tst/packer-provisioner-ansible270911575 /Users/jesusch/git/packer-9540/frontend.yml
+1594365743,,ui,message,    amazon-ebs:
+1594365743,,ui,message,    amazon-ebs: PLAY [all] *********************************************************************
+1594365743,,ui,message,    amazon-ebs:
+1594365743,,ui,message,    amazon-ebs: TASK [Gathering Facts] *********************************************************
+1594365746,,ui,message,    amazon-ebs: ok: [default]
+1594365746,,ui,message,    amazon-ebs:
+1594365746,,ui,message,    amazon-ebs: TASK [say hello] ***************************************************************
+1594365746,,ui,message,    amazon-ebs: fatal: [default]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'env' is undefined\n\nThe error appears to be in '/Users/jesusch/git/packer-9540/frontend.yml': line 5%!(PACKER_COMMA) column 7%!(PACKER_COMMA) but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: say hello\n      ^ here\n"}
+1594365746,,ui,message,    amazon-ebs:
+1594365746,,ui,message,    amazon-ebs: PLAY RECAP *********************************************************************
+1594365746,,ui,message,    amazon-ebs: default                    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+1594365746,,ui,message,    amazon-ebs:
+1594365746,,ui,say,==> amazon-ebs: Provisioning step had errors: Running the cleanup provisioner%!(PACKER_COMMA) if present...
+1594365746,,ui,say,==> amazon-ebs: Terminating the source AWS instance...
+1594365827,,ui,say,==> amazon-ebs: Cleaning up any extra volumes...
+1594365828,,ui,say,==> amazon-ebs: No volumes to clean up%!(PACKER_COMMA) skipping
+1594365828,,ui,say,==> amazon-ebs: Deleting temporary security group...
+1594365829,,ui,say,==> amazon-ebs: Deleting temporary keypair...
+1594365830,,ui,error,Build 'amazon-ebs' errored: Error executing Ansible: Non-zero exit status: exit status 2
+1594365830,,error-count,1
+1594365830,,ui,error,\n==> Some builds didn't complete successfully and had errors:
+1594365830,amazon-ebs,error,Error executing Ansible: Non-zero exit status: exit status 2
+1594365830,,ui,error,--> amazon-ebs: Error executing Ansible: Non-zero exit status: exit status 2
+1594365830,,ui,say,\n==> Builds finished but no artifacts were created.

@@ -1,0 +1,39 @@
+1594365684,,ui,say,==> amazon-ebs: Force Deregister flag found%!(PACKER_COMMA) skipping prevalidating AMI Name
+1594365685,,ui,message,    amazon-ebs: Found Image ID: ami-049f322a544cfcf88
+1594365685,,ui,message,    amazon-ebs: Found VPC ID: vpc-04fc0ec4d2605ef9b
+1594365686,,ui,message,    amazon-ebs: Found Subnet ID: subnet-0d6757313102800ab
+1594365686,,ui,say,==> amazon-ebs: Creating temporary keypair: packer_5f0816f3-fd29-2440-8a58-63b1b16f8bdd
+1594365687,,ui,say,==> amazon-ebs: Creating temporary security group for this instance: packer_5f0816f7-e12f-17b1-f1ae-c66019350a3d
+1594365688,,ui,say,==> amazon-ebs: Authorizing access to port 22 from [0.0.0.0/0] in the temporary security groups...
+1594365688,,ui,say,==> amazon-ebs: Launching a source AWS instance...
+1594365688,,ui,say,==> amazon-ebs: Adding tags to source instance
+1594365688,,ui,message,    amazon-ebs: Adding tag: "Name": "Packer Builder"
+1594365690,,ui,message,    amazon-ebs: Instance ID: i-08fe1fa7c3d93e183
+1594365690,,ui,say,==> amazon-ebs: Waiting for instance (i-08fe1fa7c3d93e183) to become ready...
+1594365706,,ui,say,==> amazon-ebs: Using ssh communicator to connect: 54.229.93.18
+1594365706,,ui,say,==> amazon-ebs: Waiting for SSH to become available...
+1594365726,,ui,say,==> amazon-ebs: Connected to SSH!
+1594365726,,ui,say,==> amazon-ebs: Provisioning with Ansible...
+1594365726,,ui,message,    amazon-ebs: Setting up proxy adapter for Ansible....
+1594365726,,ui,say,==> amazon-ebs: Executing Ansible: ansible-playbook -e packer_build_name=amazon-ebs -e packer_builder_type=amazon-ebs -e packer_http_addr=ERR_HTTP_ADDR_NOT_IMPLEMENTED_BY_BUILDER --ssh-extra-args '-o IdentitiesOnly=yes' --ssh-extra-args -o IdentitiesOnly=yes -e ansible_ssh_private_key_file=/var/folders/xf/vbqrc1g108b1n7t4j_g9r1_h0000gn/T/ansible-key884619165 -i hosts/hosts.tst /Users/jesusch/git/packer-9540/frontend.yml
+1594365726,,ui,message,    amazon-ebs:
+1594365726,,ui,message,    amazon-ebs: PLAY [all] *********************************************************************
+1594365726,,ui,message,    amazon-ebs:
+1594365726,,ui,message,    amazon-ebs: TASK [Gathering Facts] *********************************************************
+1594365727,,ui,message,    amazon-ebs: fatal: [host01.tst.private]: UNREACHABLE! => {"changed": false%!(PACKER_COMMA) "msg": "Data could not be sent to remote host \"host01.tst.private\". Make sure this host can be reached over ssh: ssh: Could not resolve hostname host01.tst.private: nodename nor servname provided%!(PACKER_COMMA) or not known\r\n"%!(PACKER_COMMA) "unreachable": true}
+1594365727,,ui,message,    amazon-ebs:
+1594365727,,ui,message,    amazon-ebs: PLAY RECAP *********************************************************************
+1594365727,,ui,message,    amazon-ebs: host01.tst.private         : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+1594365727,,ui,message,    amazon-ebs:
+1594365727,,ui,say,==> amazon-ebs: Provisioning step had errors: Running the cleanup provisioner%!(PACKER_COMMA) if present...
+1594365727,,ui,say,==> amazon-ebs: Terminating the source AWS instance...
+1594365743,,ui,say,==> amazon-ebs: Cleaning up any extra volumes...
+1594365744,,ui,say,==> amazon-ebs: No volumes to clean up%!(PACKER_COMMA) skipping
+1594365744,,ui,say,==> amazon-ebs: Deleting temporary security group...
+1594365745,,ui,say,==> amazon-ebs: Deleting temporary keypair...
+1594365745,,ui,error,Build 'amazon-ebs' errored: Error executing Ansible: Non-zero exit status: exit status 4
+1594365745,,error-count,1
+1594365745,,ui,error,\n==> Some builds didn't complete successfully and had errors:
+1594365745,amazon-ebs,error,Error executing Ansible: Non-zero exit status: exit status 4
+1594365745,,ui,error,--> amazon-ebs: Error executing Ansible: Non-zero exit status: exit status 4
+1594365745,,ui,say,\n==> Builds finished but no artifacts were created.
