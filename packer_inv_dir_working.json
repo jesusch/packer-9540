@@ -1,0 +1,64 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "aws_region": "",
+    "env": "working"
+  },
+  "provisioners": [
+    {
+      "type": "ansible",
+      "playbook_file": "frontend.yml",
+      "groups": [ "frontend" ],
+      "inventory_directory": "hosts/hosts.{{ user `env` }}",
+      "extra_arguments": [
+        "--ssh-extra-args", "-o IdentitiesOnly=yes"
+      ]
+    }
+  ],
+  "builders": [
+    {
+      "ami_name": "frontend",
+      "type": "amazon-ebs",
+      "instance_type": "m5.large",
+      "ssh_username": "ubuntu",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `aws_region`}}",
+      "tags": {
+        "OS_Version": "Cool Ubuntu 20.04",
+        "Release": "master",
+        "Base_AMI_Name": "{{ .SourceAMIName }}",
+        "Extra": "{{ .SourceAMITags.TagName }}"
+      },
+      "force_deregister": true,
+      "force_delete_snapshot": true,
+      "source_ami_filter": {
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "ubuntu/images/*ubuntu*20.04-amd64-server-*",
+          "root-device-type": "ebs"
+        },
+        "owners": [
+          "099720109477"
+        ],
+        "most_recent": true
+      },
+      "associate_public_ip_address": true,
+      "vpc_filter": {
+        "filters": { "isDefault": "false" }
+      },
+      "subnet_filter": {
+        "filters": { "tag:Name": "public*" },
+        "most_free": true,
+        "random": true
+      }
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "manifest",
+      "output": "manifest.frontend.json"
+    }
+  ]
+}
